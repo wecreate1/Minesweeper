@@ -24,7 +24,7 @@ Partial Class GameScreen
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblMinesLeft = New System.Windows.Forms.Label()
-        Me.gridMines = New System.Windows.Forms.TableLayoutPanel()
+        Me.panelMines = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -34,14 +34,14 @@ Partial Class GameScreen
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.ColumnCount = 1
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.lblMinesLeft, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.gridMines, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.panelMines, 0, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 12)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.39241!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.6076!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(260, 237)
         Me.TableLayoutPanel1.TabIndex = 0
         '
@@ -55,24 +55,21 @@ Partial Class GameScreen
         Me.lblMinesLeft.TabIndex = 0
         Me.lblMinesLeft.Text = "Mines Left: "
         '
-        'gridMines
+        'panelMines
         '
-        Me.gridMines.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.gridMines.BackColor = System.Drawing.SystemColors.Control
-        Me.gridMines.ColumnCount = 1
-        Me.gridMines.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.gridMines.Location = New System.Drawing.Point(0, 27)
-        Me.gridMines.Margin = New System.Windows.Forms.Padding(0)
-        Me.gridMines.Name = "gridMines"
-        Me.gridMines.RowCount = 1
-        Me.gridMines.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.gridMines.Size = New System.Drawing.Size(260, 210)
-        Me.gridMines.TabIndex = 1
+        Me.panelMines.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.panelMines.AutoScroll = True
+        Me.panelMines.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelMines.Location = New System.Drawing.Point(0, 23)
+        Me.panelMines.Name = "panelMines"
+        Me.panelMines.Size = New System.Drawing.Size(260, 214)
+        Me.panelMines.TabIndex = 1
         '
         'GameScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(284, 261)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "GameScreen"
@@ -85,5 +82,5 @@ Partial Class GameScreen
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents lblMinesLeft As Label
-    Friend WithEvents gridMines As TableLayoutPanel
+    Friend WithEvents panelMines As Panel
 End Class
