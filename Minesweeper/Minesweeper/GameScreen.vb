@@ -16,7 +16,7 @@
         panelMines.Height = 32 * height
 
 
-        ReDim cell(width, height)
+        ReDim cell(width - 1, height - 1)
 
         For x = 0 To width - 1
             For y = 0 To height - 1
@@ -45,19 +45,18 @@
         Dim selectedMine As mine
         Dim selectedX As Integer
         Dim selectedY As Integer
-        While True
-            For i = 1 To mines
-                While True
-                    selectedX = Math.Ceiling(Rnd() * Me.x)
-                    selectedY = Math.Ceiling(Rnd() * Me.y)
-                    selectedMine = cell.GetValue(selectedX, selectedY) 'FIX ME
-                    If selectedX <> x And selectedY <> y And selectedMine.isMine <> True Then
-                        selectedMine.isMine = True
-                        Exit While
-                    End If
-                End While
-            Next
-        End While
+        cell(x, y).isMine = True
+        For i = 1 To mines
+            While True
+                selectedX = Math.Floor(Rnd() * Me.x)
+                selectedY = Math.Floor(Rnd() * Me.y)
+                selectedMine = cell.GetValue(selectedX, selectedY) 'FIX ME
+                If Not selectedMine.isMine.HasValue Then
+                    selectedMine.isMine = True
+                    Exit While
+                End If
+            End While
+        Next
     End Sub
 
     Private Sub panelMines_Click(sender As Object, e As EventArgs)

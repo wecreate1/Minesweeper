@@ -27,8 +27,11 @@
     End Sub
 
     Public Sub updateMine()
-        If _isMine Then
+        If isMine.Value Then
             Me.BackColor = Color.Red
+
+        ElseIf Not isMine.Value Then
+            Me.BackColor = Color.Green
         End If
     End Sub
 
