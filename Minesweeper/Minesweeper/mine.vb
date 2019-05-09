@@ -10,8 +10,8 @@
         End Set
     End Property
     Public _isMine As Boolean?
-    Public flagState As Integer
-    Public minesAround As Integer
+    Public flagState As Integer = 0
+    Public minesAround As Integer = 0
     Public Event generateMinesAt As Action(Of Integer, Integer)
     Public x As Integer
     Public y As Integer

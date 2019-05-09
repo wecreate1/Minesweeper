@@ -1,20 +1,26 @@
 ﻿Public Class GameScreen
     Private cell(,) As mine
-    Private mines As Integer
+    Private minesOnBoard As Integer
     Private x As Integer
     Private y As Integer
+    Private mines As New List(Of mine)
     Public Sub New(Optional width As Integer = 10, Optional height As Integer = 10, Optional mines As Integer = 30)
 
         ' This call is required by the designer.
         InitializeComponent()
 
+        Dim x As Integer
+        Dim y As Integer
+
         Randomize()
 
-        Me.mines = mines
+        Me.minesOnBoard = mines
 
         panelMines.Width = 32 * width
         panelMines.Height = 32 * height
 
+        Me.x = width
+        Me.y = height
 
         ReDim cell(width - 1, height - 1)
 
@@ -46,16 +52,24 @@
         Dim selectedX As Integer
         Dim selectedY As Integer
         cell(x, y).isMine = True
-        For i = 1 To mines
+        For i = 1 To minesOnBoard
             While True
                 selectedX = Math.Floor(Rnd() * Me.x)
                 selectedY = Math.Floor(Rnd() * Me.y)
                 selectedMine = cell.GetValue(selectedX, selectedY) 'FIX ME
                 If Not selectedMine.isMine.HasValue Then
                     selectedMine.isMine = True
+                    mines.Add(selectedMine)
                     Exit While
                 End If
             End While
+        Next
+        For Each mine In mines
+            For offY = x - 1 To x + 1
+                For offX = y - 1 To +1
+                    cell(offX, offY).minesAround += 1
+                Next
+            Next
         Next
     End Sub
 

@@ -16,4 +16,8 @@
         Dim gameScreen As New GameScreen(numWidth.Value, numHeight.Value, numMines.Value)
         gameScreen.Show()
     End Sub
+
+    Private Sub numHeight_ValueChanged(sender As Object, e As EventArgs) Handles numWidth.Validated, numHeight.Validated
+        numMines.Maximum = (numHeight.Value * numWidth.Value) - 1
+    End Sub
 End Class

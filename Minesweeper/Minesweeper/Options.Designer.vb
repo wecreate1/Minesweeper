@@ -95,7 +95,8 @@ Partial Class Options
         '
         Me.numMines.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.numMines.Location = New System.Drawing.Point(55, 152)
-        Me.numMines.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.numMines.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
+        Me.numMines.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numMines.Name = "numMines"
         Me.numMines.Size = New System.Drawing.Size(201, 20)
         Me.numMines.TabIndex = 6
@@ -105,6 +106,7 @@ Partial Class Options
         '
         Me.numWidth.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.numWidth.Location = New System.Drawing.Point(55, 87)
+        Me.numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numWidth.Name = "numWidth"
         Me.numWidth.Size = New System.Drawing.Size(201, 20)
         Me.numWidth.TabIndex = 7
@@ -114,6 +116,7 @@ Partial Class Options
         '
         Me.numHeight.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.numHeight.Location = New System.Drawing.Point(55, 22)
+        Me.numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numHeight.Name = "numHeight"
         Me.numHeight.Size = New System.Drawing.Size(201, 20)
         Me.numHeight.TabIndex = 8
