@@ -5,8 +5,11 @@
             Return _isMine
         End Get
         Set(value As Boolean?)
+            If value.HasValue AndAlso value.Value Then
+                BackColor = Color.Red
+            End If
             _isMine = value
-            updateMineState()
+            'updateMineState()
         End Set
     End Property
 
@@ -20,14 +23,26 @@
         End Set
     End Property
 
+    Public Property flagState As Integer
+        Get
+            Return _flagState
+        End Get
+        Set(value As Integer)
+            _flagState = value
+            updateMineState()
+        End Set
+    End Property
+
     Public _isMine As Boolean?
-    Public flagState As Integer = 0
+    Private _flagState As Integer = 0
     'flagstate 0 default
     '-1 opened
     '1 flag 1
     '2 flag 2
     Private _minesAround As Integer = 0
     Public Event mineClicked As Action(Of Integer, Integer)
+    Public Event gameLose As Action(Of Integer, Integer)
+    Public Event openNear As Action(Of Integer, Integer)
     Public x As Integer
     Public y As Integer
 
@@ -42,10 +57,22 @@
     End Sub
 
     Public Sub updateMineState()
-        If isMine.Value Then
-            Me.BackColor = Color.Red
-            lblMinesAround.Visible = False
-        End If
+        Select Case flagState
+            Case -1
+                If isMine.Value = True Then
+                    RaiseEvent gameLose(x, y)
+                Else
+                    'lblMinesAround.Visible = True
+                    If minesAround = 0 Then
+                        BackColor = SystemColors.Control
+                        RaiseEvent openNear(x, y)
+                    Else
+                        BackColor = SystemColors.ControlDark
+                        lblMinesAround.Visible = True
+                    End If
+                End If
+        End Select
+
     End Sub
 
     Private Sub mine_Click(sender As Object, e As EventArgs) Handles MyBase.Click

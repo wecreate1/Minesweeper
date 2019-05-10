@@ -27,6 +27,7 @@ Partial Class mine
         '
         'lblMinesAround
         '
+        Me.lblMinesAround.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.lblMinesAround.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblMinesAround.Enabled = False
         Me.lblMinesAround.Location = New System.Drawing.Point(0, 0)
@@ -34,6 +35,7 @@ Partial Class mine
         Me.lblMinesAround.Size = New System.Drawing.Size(30, 30)
         Me.lblMinesAround.TabIndex = 0
         Me.lblMinesAround.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblMinesAround.Visible = False
         '
         'mine
         '

@@ -29,6 +29,8 @@
             For y = 0 To height - 1
                 Dim mine As New mine(x, y) With {.Top = 32 * y, .Left = 32 * x}
                 AddHandler mine.mineClicked, Sub(atX As Integer, atY As Integer) mineClicked(atX, atY)
+                AddHandler mine.gameLose, Sub(atX As Integer, atY As Integer) gameLose(atX, atY)
+                AddHandler mine.openNear, Sub(atX As Integer, atY As Integer) openNearMine(atX, atY)
                 cell(x, y) = mine
                 panelMines.Controls.Add(mine)
 
@@ -51,14 +53,12 @@
     Public Sub mineClicked(x As Integer, y As Integer)
         Dim selectedMine As mine = cell(x, y)
         If Not minesGenerated Then
+
             generateMines(x, y)
+
         ElseIf selectedMine.flagState = 0 Then
-            If selectedMine.isMine Then
-                gameLose(x, y)
-            Else
-                selectedMine.flagState = -1
-                selectedMine.BackColor = Color.Lime
-            End If
+
+            selectedMine.flagState = -1
 
         End If
     End Sub
@@ -77,7 +77,7 @@
             While True
                 selectedX = Math.Floor(Rnd() * Me.x)
                 selectedY = Math.Floor(Rnd() * Me.y)
-                selectedMine = cell.GetValue(selectedX, selectedY) 'FIX ME
+                selectedMine = cell.GetValue(selectedX, selectedY)
                 If Not selectedMine.isMine.HasValue Then
                     selectedMine.isMine = True
                     mines.Add(selectedMine)
@@ -96,13 +96,36 @@
                 End If
             Next
         Next
+        For Each mine In cell
+            If Not mine.isMine.HasValue Then
+                mine.isMine = False
+            End If
+        Next
+        cell(x, y).flagState = -1
     End Sub
 
-    Private Sub panelMines_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub panelMines_MouseClick(sender As Object, e As MouseEventArgs) Handles panelMines.MouseClick
-
+    Public Sub openNearMine(x As Integer, y As Integer)
+        Dim selectedMine As mine
+        For Each mine In mines
+            For offY = mine.y - 1 To mine.y + 1
+                If offY >= 0 And offY < Me.y Then
+                    For offX = mine.x - 1 To mine.x + 1
+                        If offX >= 0 And offX < Me.x Then
+                            selectedMine = cell(offX, offY)
+                            If selectedMine.isMine.Value Then
+                                Debug.WriteLine("HIT")
+                            Else
+                                If selectedMine.flagState = 0 Then
+                                    selectedMine.flagState = -1 'HELPME
+                                End If
+                            End If
+                            'If selectedMine.flagState = 0 Then
+                            '    selectedMine.flagState = -1
+                            'End If
+                        End If
+                    Next
+                End If
+            Next
+        Next
     End Sub
 End Class
