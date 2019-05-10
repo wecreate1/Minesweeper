@@ -6,13 +6,28 @@
         End Get
         Set(value As Boolean?)
             _isMine = value
-            updateMine()
+            updateMineState()
         End Set
     End Property
+
+    Public Property minesAround As Integer
+        Get
+            Return _minesAround
+        End Get
+        Set(value As Integer)
+            _minesAround = value
+            lblMinesAround.Text = value
+        End Set
+    End Property
+
     Public _isMine As Boolean?
     Public flagState As Integer = 0
-    Public minesAround As Integer = 0
-    Public Event generateMinesAt As Action(Of Integer, Integer)
+    'flagstate 0 default
+    '-1 opened
+    '1 flag 1
+    '2 flag 2
+    Private _minesAround As Integer = 0
+    Public Event mineClicked As Action(Of Integer, Integer)
     Public x As Integer
     Public y As Integer
 
@@ -26,19 +41,14 @@
         Me.y = y
     End Sub
 
-    Public Sub updateMine()
+    Public Sub updateMineState()
         If isMine.Value Then
             Me.BackColor = Color.Red
-
-        ElseIf Not isMine.Value Then
-            Me.BackColor = Color.Green
+            lblMinesAround.Visible = False
         End If
     End Sub
 
     Private Sub mine_Click(sender As Object, e As EventArgs) Handles MyBase.Click
-        If IsNothing(isMine) Then
-            RaiseEvent generateMinesAt(x, y)
-        End If
-        BackColor = Color.Lime
+        RaiseEvent mineClicked(x, y)
     End Sub
 End Class

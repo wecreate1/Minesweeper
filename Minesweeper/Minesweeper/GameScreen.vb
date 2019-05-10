@@ -4,6 +4,7 @@
     Private x As Integer
     Private y As Integer
     Private mines As New List(Of mine)
+    Private minesGenerated As Boolean
     Public Sub New(Optional width As Integer = 10, Optional height As Integer = 10, Optional mines As Integer = 30)
 
         ' This call is required by the designer.
@@ -27,7 +28,7 @@
         For x = 0 To width - 1
             For y = 0 To height - 1
                 Dim mine As New mine(x, y) With {.Top = 32 * y, .Left = 32 * x}
-                AddHandler mine.generateMinesAt, Sub(atX As Integer, atY As Integer) generateMines(atX, atY)
+                AddHandler mine.mineClicked, Sub(atX As Integer, atY As Integer) mineClicked(atX, atY)
                 cell(x, y) = mine
                 panelMines.Controls.Add(mine)
 
@@ -47,11 +48,31 @@
         'Next
     End Sub
 
-    Public Sub generateMines(x As Integer, y As Integer)
+    Public Sub mineClicked(x As Integer, y As Integer)
+        Dim selectedMine As mine = cell(x, y)
+        If Not minesGenerated Then
+            generateMines(x, y)
+        ElseIf selectedMine.flagState = 0 Then
+            If selectedMine.isMine Then
+                gameLose(x, y)
+            Else
+                selectedMine.flagState = -1
+                selectedMine.BackColor = Color.Lime
+            End If
+
+        End If
+    End Sub
+
+    Private Sub gameLose(x As Integer, y As Integer)
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub generateMines(x As Integer, y As Integer)
         Dim selectedMine As mine
         Dim selectedX As Integer
         Dim selectedY As Integer
-        cell(x, y).isMine = True
+        minesGenerated = True
+        cell(x, y).isMine = False
         For i = 1 To minesOnBoard
             While True
                 selectedX = Math.Floor(Rnd() * Me.x)
@@ -65,10 +86,14 @@
             End While
         Next
         For Each mine In mines
-            For offY = x - 1 To x + 1
-                For offX = y - 1 To +1
-                    cell(offX, offY).minesAround += 1
-                Next
+            For offY = mine.y - 1 To mine.y + 1
+                If offY >= 0 And offY < Me.y Then
+                    For offX = mine.x - 1 To mine.x + 1
+                        If offX >= 0 And offX < Me.x Then
+                            cell(offX, offY).minesAround += 1
+                        End If
+                    Next
+                End If
             Next
         Next
     End Sub
