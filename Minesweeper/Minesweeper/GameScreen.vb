@@ -40,23 +40,42 @@
 
     Public Sub mineClicked(e As MouseEventArgs, x As Integer, y As Integer)
         Dim selectedMine As mine = cell(x, y)
-
+        gameLose(x, y)
+        Return
         If Not minesGenerated Then
             generateMines(x, y)
-
+        ElseIf e.Button = MouseButtons.Right Then
+            selectedMine.flagState += 1
         ElseIf e.Clicks > 1 Or e.Button = MouseButtons.Middle Then
             openNearMine(x, y)
 
         ElseIf e.Button = MouseButtons.Left AndAlso selectedMine.flagState = 0 Then
             selectedMine.flagState = -1
-
-        ElseIf e.Button = MouseButtons.Right Then
-            selectedMine.flagState += 1
         End If
     End Sub
 
     Private Sub gameLose(x As Integer, y As Integer)
-        cell(x, y).BackColor = Color.Red
+        Dim explosionRadius As Integer = 0
+        Dim possibleExplosionRadii As Integer()
+        Dim maxExplosionRadius As Integer
+        Dim atX As Integer
+        Dim atY As Integer
+        possibleExplosionRadii = {x, y, Me.x - x, Me.y - y}
+        maxExplosionRadius = possibleExplosionRadii.Max()
+        For r = 0 To maxExplosionRadius
+            For offY = -r To r Step 2 * r
+                For offX = -r + 1 To r - 1
+                    atX = x + offX
+                    atY = y + offY
+                    If atY >= 0 AndAlso atY < Me.y AndAlso
+                        atX >= 0 AndAlso atX < Me.x Then
+                        cell(atX, atY).BackColor = Color.Purple
+                        cell(atX, atY).Update()
+                        Threading.Thread.Sleep(10)
+                    End If
+                Next
+            Next
+        Next
     End Sub
 
     Private Sub generateMines(x As Integer, y As Integer)

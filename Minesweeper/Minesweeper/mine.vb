@@ -72,9 +72,9 @@
             Case 0
                 BackColor = SystemColors.ControlDark
             Case 1
-                BackColor = SystemColors.Highlight
+                BackColor = Color.Yellow
             Case 2
-                BackColor = SystemColors.MenuHighlight
+                BackColor = Color.GreenYellow
         End Select
 
     End Sub
