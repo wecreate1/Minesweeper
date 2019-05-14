@@ -108,9 +108,10 @@
             Next
         Next
         Update()
+        Threading.Thread.Sleep(1000)
         Dim result As Integer
         result = GameOverLoss.ShowDialog()
-
+        Debug.WriteLine(result)
     End Sub
 
     Private Sub generateMines(x As Integer, y As Integer)
