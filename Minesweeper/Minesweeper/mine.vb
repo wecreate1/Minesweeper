@@ -39,11 +39,21 @@
     '1 flag 1
     '2 flag 2
     Private _minesAround As Integer = 0
+    Public hasBeenOpened As Boolean
     Public Event mineClicked As Action(Of MouseEventArgs, Integer, Integer)
     Public Event gameLose As Action(Of Integer, Integer)
     Public Event openNear As Action(Of Integer, Integer)
     Public x As Integer
     Public y As Integer
+    Private fontColors As New Dictionary(Of Integer, Color) From {
+        {1, Color.DarkGreen},
+        {2, Color.DarkBlue},
+        {3, Color.YellowGreen},
+        {4, Color.SaddleBrown},
+        {5, Color.DarkRed},
+        {6, Color.Orange},
+        {7, Color.SpringGreen},
+        {8, Color.Indigo}}
 
     Public Sub New(x As Integer, y As Integer)
 
@@ -67,6 +77,7 @@
                         RaiseEvent openNear(x, y)
                     Else
                         BackColor = SystemColors.ControlDark
+                        fontColors.TryGetValue(minesAround, lblMinesAround.ForeColor)
                         lblMinesAround.Visible = True
                     End If
                 End If

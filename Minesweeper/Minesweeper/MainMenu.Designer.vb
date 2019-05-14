@@ -24,7 +24,10 @@ Partial Class MainMenu
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnOptions = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnQuickPlay = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -34,7 +37,7 @@ Partial Class MainMenu
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btnOptions, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 12)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
@@ -48,12 +51,40 @@ Partial Class MainMenu
         Me.btnOptions.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnOptions.AutoSize = True
         Me.btnOptions.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.btnOptions.Location = New System.Drawing.Point(103, 207)
+        Me.btnOptions.Location = New System.Drawing.Point(164, 3)
         Me.btnOptions.Name = "btnOptions"
         Me.btnOptions.Size = New System.Drawing.Size(53, 23)
         Me.btnOptions.TabIndex = 0
         Me.btnOptions.Text = "Options"
         Me.btnOptions.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.btnOptions, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnQuickPlay, 0, 0)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 204)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(254, 30)
+        Me.TableLayoutPanel2.TabIndex = 1
+        '
+        'btnQuickPlay
+        '
+        Me.btnQuickPlay.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnQuickPlay.Location = New System.Drawing.Point(26, 3)
+        Me.btnQuickPlay.Name = "btnQuickPlay"
+        Me.btnQuickPlay.Size = New System.Drawing.Size(75, 23)
+        Me.btnQuickPlay.TabIndex = 1
+        Me.btnQuickPlay.Text = "Quick Play"
+        Me.btnQuickPlay.UseVisualStyleBackColor = True
         '
         'MainMenu
         '
@@ -64,11 +95,14 @@ Partial Class MainMenu
         Me.Name = "MainMenu"
         Me.Text = "Minesweeper"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents btnOptions As Button
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents btnQuickPlay As Button
 End Class

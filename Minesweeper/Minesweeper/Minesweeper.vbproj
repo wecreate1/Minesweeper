@@ -124,6 +124,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GameOverLoss.resx">
+      <DependentUpon>GameOverLoss.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.vb</DependentUpon>
     </EmbeddedResource>

@@ -49,7 +49,7 @@ Partial Class GameScreen
         '
         Me.lblMinesLeft.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblMinesLeft.AutoSize = True
-        Me.lblMinesLeft.Location = New System.Drawing.Point(99, 7)
+        Me.lblMinesLeft.Location = New System.Drawing.Point(99, 3)
         Me.lblMinesLeft.Name = "lblMinesLeft"
         Me.lblMinesLeft.Size = New System.Drawing.Size(62, 13)
         Me.lblMinesLeft.TabIndex = 0
@@ -60,9 +60,9 @@ Partial Class GameScreen
         Me.panelMines.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.panelMines.AutoScroll = True
         Me.panelMines.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panelMines.Location = New System.Drawing.Point(0, 23)
+        Me.panelMines.Location = New System.Drawing.Point(3, 23)
         Me.panelMines.Name = "panelMines"
-        Me.panelMines.Size = New System.Drawing.Size(260, 214)
+        Me.panelMines.Size = New System.Drawing.Size(254, 211)
         Me.panelMines.TabIndex = 1
         '
         'GameScreen
