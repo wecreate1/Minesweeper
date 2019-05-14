@@ -40,8 +40,6 @@
 
     Public Sub mineClicked(e As MouseEventArgs, x As Integer, y As Integer)
         Dim selectedMine As mine = cell(x, y)
-        gameLose(x, y)
-        Return
         If Not minesGenerated Then
             generateMines(x, y)
         ElseIf e.Button = MouseButtons.Right Then
@@ -60,20 +58,55 @@
         Dim maxExplosionRadius As Integer
         Dim atX As Integer
         Dim atY As Integer
+        Dim corner As Integer
+        Dim direction As Integer
+        'Dim side As Integer
         possibleExplosionRadii = {x, y, Me.x - x, Me.y - y}
         maxExplosionRadius = possibleExplosionRadii.Max()
-        For r = 0 To maxExplosionRadius
-            For offY = -r To r Step 2 * r
-                For offX = -r + 1 To r - 1
-                    atX = x + offX
-                    atY = y + offY
-                    If atY >= 0 AndAlso atY < Me.y AndAlso
-                        atX >= 0 AndAlso atX < Me.x Then
-                        cell(atX, atY).BackColor = Color.Purple
-                        cell(atX, atY).Update()
-                        Threading.Thread.Sleep(10)
-                    End If
+        For r = 1 To maxExplosionRadius
+            For side = -1 To 1 Step 2
+                For axis = -1 To 1 Step 2
+                    corner = r * side * axis
+                    direction = -side * axis
+                    For off = corner + direction To -corner Step direction
+                        atX = x
+                        atY = y
+                        If axis = -1 Then
+                            atX += off
+                            atY += (r * side)
+                        Else
+                            atX += (r * side)
+                            atY += off
+                        End If
+                        If atY >= 0 AndAlso atY < Me.y AndAlso
+                            atX >= 0 AndAlso atX < Me.x Then
+                            cell(atX, atY).BackColor = Color.Purple
+                            cell(atX, atY).Update()
+                            Threading.Thread.Sleep(10)
+                        End If
+                    Next
                 Next
+                'side = r * direction
+                'For offX = -side + direction To side Step direction
+                '    atX = x + offX
+                '    atY = y + (r * direction)
+                'If atY >= 0 AndAlso atY < Me.y AndAlso
+                '    atX >= 0 AndAlso atX < Me.x Then
+                '    cell(atX, atY).BackColor = Color.Purple
+                '    cell(atX, atY).Update()
+                '    Threading.Thread.Sleep(10)
+                'End If
+                'Next
+                'For offY = side - direction To -side Step -direction
+                '    atX = x + (r * direction)
+                '    atY = y + offY
+                '    If atY >= 0 AndAlso atY < Me.y AndAlso
+                '        atX >= 0 AndAlso atX < Me.x Then
+                '        cell(atX, atY).BackColor = Color.Purple
+                '        cell(atX, atY).Update()
+                '        Threading.Thread.Sleep(10)
+                '    End If
+                'Next
             Next
         Next
     End Sub
