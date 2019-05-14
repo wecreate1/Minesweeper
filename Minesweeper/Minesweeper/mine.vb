@@ -59,6 +59,7 @@
         Select Case flagState
             Case -1
                 If isMine.Value = True Then
+                    BackColor = Color.Red
                     RaiseEvent gameLose(x, y)
                 Else
                     If minesAround = 0 Then

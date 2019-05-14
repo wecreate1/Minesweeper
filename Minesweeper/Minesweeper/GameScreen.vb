@@ -46,14 +46,12 @@
             selectedMine.flagState += 1
         ElseIf e.Clicks > 1 Or e.Button = MouseButtons.Middle Then
             openNearMine(x, y)
-
         ElseIf e.Button = MouseButtons.Left AndAlso selectedMine.flagState = 0 Then
             selectedMine.flagState = -1
         End If
     End Sub
 
     Private Sub gameLose(x As Integer, y As Integer)
-        Dim explosionRadius As Integer = 0
         Dim possibleExplosionRadii As Integer()
         Dim maxExplosionRadius As Integer
         Dim atX As Integer
@@ -109,6 +107,10 @@
                 'Next
             Next
         Next
+        Update()
+        Dim result As Integer
+        result = GameOverLoss.ShowDialog()
+
     End Sub
 
     Private Sub generateMines(x As Integer, y As Integer)

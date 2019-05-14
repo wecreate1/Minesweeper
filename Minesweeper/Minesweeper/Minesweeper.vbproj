@@ -76,6 +76,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameOverLoss.Designer.vb">
+      <DependentUpon>GameOverLoss.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GameOverLoss.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GameScreen.Designer.vb">
       <DependentUpon>GameScreen.vb</DependentUpon>
     </Compile>
