@@ -24,11 +24,23 @@
             Return _flagState
         End Get
         Set(value As Integer)
-            If value > 2 Then
-                value = 0
+            If value <> _flagState Then
+                If value > 2 Then
+                    value = 0
+                End If
+
+                If value = 0 Then
+                    RaiseEvent changeGuessedMinesLeft(1)
+                ElseIf value > 0
+                    If _flagState = 0 Then
+                        RaiseEvent changeGuessedMinesLeft(-1)
+                    End If
+                ElseIf value = -1
+                    RaiseEvent changeCellsToOpen(-1)
+                End If
+                _flagState = value
+                updateMineState()
             End If
-            _flagState = value
-            updateMineState()
         End Set
     End Property
 
@@ -43,6 +55,8 @@
     Public Event mineClicked As Action(Of MouseEventArgs, Integer, Integer)
     Public Event gameLose As Action(Of Integer, Integer)
     Public Event openNear As Action(Of Integer, Integer)
+    Public Event changeGuessedMinesLeft As Action(Of Integer)
+    Public Event changeCellsToOpen As Action(Of Integer)
     Public x As Integer
     Public y As Integer
     Private fontColors As New Dictionary(Of Integer, Color) From {

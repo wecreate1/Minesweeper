@@ -1,6 +1,28 @@
 ﻿Public Class GameScreen
     Private cells(,) As mine
     Private minesOnBoard As Integer
+    Private _guessedMinesLeft As Integer
+    Private Property guessedMinesLeft
+        Get
+            Return _guessedMinesLeft
+        End Get
+        Set(value)
+            _guessedMinesLeft = value
+            lblMinesLeft.Text = "Mines Left: " & value
+        End Set
+    End Property
+    Private _cellsLeftToOpen As Integer
+    Private Property cellsLeftToOpen As Integer
+        Get
+            Return _cellsLeftToOpen
+        End Get
+        Set(value As Integer)
+            _cellsLeftToOpen = value
+            If _cellsLeftToOpen = 0 Then
+                gameWin()
+            End If
+        End Set
+    End Property
     Private x As Integer
     Private y As Integer
     Private mines As New List(Of mine)
@@ -18,6 +40,9 @@
 
         Randomize()
 
+        guessedMinesLeft = mines
+        _cellsLeftToOpen = (width * height) - mines
+
         Me.minesOnBoard = mines
 
         panelMines.Width = 32 * width
@@ -34,11 +59,17 @@
                 AddHandler mine.mineClicked, Sub(e As MouseEventArgs, atX As Integer, atY As Integer) mineClicked(e, atX, atY)
                 AddHandler mine.gameLose, Sub(atX As Integer, atY As Integer) gameLose(atX, atY)
                 AddHandler mine.openNear, Sub(atX As Integer, atY As Integer) openNearMine(atX, atY)
+                AddHandler mine.changeGuessedMinesLeft, Sub(changeBy As Integer) guessedMinesLeft += changeBy
+                AddHandler mine.changeCellsToOpen, Sub(changeBy As Integer) cellsLeftToOpen += changeBy
                 cells(x, y) = mine
                 panelMines.Controls.Add(mine)
-
             Next
         Next
+    End Sub
+
+    Private Sub gameWin()
+        BackColor = Color.Lime
+        MessageBox.Show("You Won!")
     End Sub
 
     Public Sub mineClicked(e As MouseEventArgs, x As Integer, y As Integer)
@@ -67,6 +98,7 @@
         If selectedCell.hasBeenOpened Then
             Return
         End If
+        guessedMinesLeft -= 1
         selectedCell.hasBeenOpened = True
         possibleExplosionRadii = {x, y, Me.x - x, Me.y - y}
         maxExplosionRadius = possibleExplosionRadii.Max()

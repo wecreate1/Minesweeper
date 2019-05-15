@@ -42,14 +42,14 @@ Partial Class GameScreen
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(260, 237)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(795, 627)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'lblMinesLeft
         '
         Me.lblMinesLeft.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblMinesLeft.AutoSize = True
-        Me.lblMinesLeft.Location = New System.Drawing.Point(99, 3)
+        Me.lblMinesLeft.Location = New System.Drawing.Point(366, 3)
         Me.lblMinesLeft.Name = "lblMinesLeft"
         Me.lblMinesLeft.Size = New System.Drawing.Size(62, 13)
         Me.lblMinesLeft.TabIndex = 0
@@ -60,7 +60,7 @@ Partial Class GameScreen
         Me.panelMines.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.panelMines.AutoScroll = True
         Me.panelMines.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panelMines.Location = New System.Drawing.Point(3, 23)
+        Me.panelMines.Location = New System.Drawing.Point(270, 218)
         Me.panelMines.Name = "panelMines"
         Me.panelMines.Size = New System.Drawing.Size(254, 211)
         Me.panelMines.TabIndex = 1
@@ -70,7 +70,7 @@ Partial Class GameScreen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.ClientSize = New System.Drawing.Size(819, 651)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "GameScreen"
         Me.Text = "GameScreen"
