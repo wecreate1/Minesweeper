@@ -29,7 +29,6 @@ Partial Class mine
         '
         Me.lblMinesAround.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.lblMinesAround.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblMinesAround.Enabled = False
         Me.lblMinesAround.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMinesAround.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblMinesAround.Location = New System.Drawing.Point(0, 0)

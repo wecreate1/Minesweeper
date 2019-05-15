@@ -46,14 +46,14 @@
     Public x As Integer
     Public y As Integer
     Private fontColors As New Dictionary(Of Integer, Color) From {
-        {1, Color.DarkGreen},
-        {2, Color.DarkBlue},
-        {3, Color.YellowGreen},
-        {4, Color.SaddleBrown},
-        {5, Color.DarkRed},
-        {6, Color.Orange},
-        {7, Color.SpringGreen},
-        {8, Color.Indigo}}
+        {1, Color.Blue},
+        {2, Color.Lime},
+        {3, Color.Red},
+        {4, Color.Magenta},
+        {5, Color.Maroon},
+        {6, Color.Turquoise},
+        {7, Color.Black},
+        {8, Color.Gray}}
 
     Public Sub New(x As Integer, y As Integer)
 
@@ -91,7 +91,8 @@
 
     End Sub
 
-    Private Sub mine_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick, MyBase.MouseDoubleClick
+    Private Sub mine_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick, MyBase.MouseDoubleClick,
+            lblMinesAround.MouseClick, lblMinesAround.MouseDoubleClick
         RaiseEvent mineClicked(e, x, y)
     End Sub
 End Class

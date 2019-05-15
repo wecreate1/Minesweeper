@@ -43,18 +43,15 @@
 
     Public Sub mineClicked(e As MouseEventArgs, x As Integer, y As Integer)
         Dim selectedMine As mine = cells(x, y)
-        selectedMine.isMine = False
-        selectedMine.minesAround = x + 1
-        selectedMine.flagState = -1
-        'If Not minesGenerated Then
-        '    generateMines(x, y)
-        'ElseIf e.Button = MouseButtons.Right AndAlso selectedMine.flagState <> -1 Then
-        '    selectedMine.flagState += 1
-        'ElseIf e.Clicks > 1 Or e.Button = MouseButtons.Middle Then
-        '    openNearMine(x, y)
-        'ElseIf e.Button = MouseButtons.Left AndAlso selectedMine.flagState = 0 Then
-        '    selectedMine.flagState = -1
-        'End If
+        If Not minesGenerated Then
+            generateMines(x, y)
+        ElseIf e.Button = MouseButtons.Right AndAlso selectedMine.flagState <> -1 Then
+            selectedMine.flagState += 1
+        ElseIf e.Clicks > 1 Or e.Button = MouseButtons.Middle Then
+            openNearMine(x, y)
+        ElseIf e.Button = MouseButtons.Left AndAlso selectedMine.flagState = 0 Then
+            selectedMine.flagState = -1
+        End If
     End Sub
 
     Private Sub gameLose(x As Integer, y As Integer)
