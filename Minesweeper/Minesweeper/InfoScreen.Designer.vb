@@ -36,7 +36,7 @@ Partial Class InfoScreen
         Me.rtfInfo.Location = New System.Drawing.Point(12, 12)
         Me.rtfInfo.Name = "rtfInfo"
         Me.rtfInfo.ReadOnly = True
-        Me.rtfInfo.Size = New System.Drawing.Size(368, 345)
+        Me.rtfInfo.Size = New System.Drawing.Size(564, 615)
         Me.rtfInfo.TabIndex = 0
         Me.rtfInfo.Text = ""
         '
@@ -44,7 +44,7 @@ Partial Class InfoScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(392, 369)
+        Me.ClientSize = New System.Drawing.Size(588, 581)
         Me.Controls.Add(Me.rtfInfo)
         Me.Name = "InfoScreen"
         Me.Text = "InfoScreen"
