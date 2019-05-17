@@ -22,11 +22,12 @@ Partial Class GameOverLoss
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameOverLoss))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.OK_Button = New System.Windows.Forms.Button()
-        Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblBody = New System.Windows.Forms.Label()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -51,6 +52,20 @@ Partial Class GameOverLoss
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(411, 155)
         Me.TableLayoutPanel1.TabIndex = 0
         '
+        'lblBody
+        '
+        Me.lblBody.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel1.SetColumnSpan(Me.lblBody, 2)
+        Me.lblBody.Location = New System.Drawing.Point(3, 40)
+        Me.lblBody.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
+        Me.lblBody.Name = "lblBody"
+        Me.lblBody.Size = New System.Drawing.Size(405, 83)
+        Me.lblBody.TabIndex = 2
+        Me.lblBody.Text = "What would you like to do now?"
+        Me.lblBody.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
         'OK_Button
         '
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -60,17 +75,6 @@ Partial Class GameOverLoss
         Me.OK_Button.Size = New System.Drawing.Size(156, 23)
         Me.OK_Button.TabIndex = 0
         Me.OK_Button.Text = "Return to Main Menu"
-        '
-        'Cancel_Button
-        '
-        Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Cancel_Button.AutoSize = True
-        Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel_Button.Location = New System.Drawing.Point(230, 127)
-        Me.Cancel_Button.Name = "Cancel_Button"
-        Me.Cancel_Button.Size = New System.Drawing.Size(156, 23)
-        Me.Cancel_Button.TabIndex = 1
-        Me.Cancel_Button.Text = "Pretend like nothing happend"
         '
         'lblTitle
         '
@@ -86,19 +90,16 @@ Partial Class GameOverLoss
         Me.lblTitle.Text = "You Hit a Mine!"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lblBody
+        'Cancel_Button
         '
-        Me.lblBody.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TableLayoutPanel1.SetColumnSpan(Me.lblBody, 2)
-        Me.lblBody.Location = New System.Drawing.Point(3, 40)
-        Me.lblBody.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
-        Me.lblBody.Name = "lblBody"
-        Me.lblBody.Size = New System.Drawing.Size(405, 83)
-        Me.lblBody.TabIndex = 2
-        Me.lblBody.Text = "What would you like to do now?"
-        Me.lblBody.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Cancel_Button.AutoSize = True
+        Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.Cancel_Button.Location = New System.Drawing.Point(230, 127)
+        Me.Cancel_Button.Name = "Cancel_Button"
+        Me.Cancel_Button.Size = New System.Drawing.Size(156, 23)
+        Me.Cancel_Button.TabIndex = 1
+        Me.Cancel_Button.Text = "Pretend like nothing happend"
         '
         'GameOverLoss
         '
@@ -109,6 +110,7 @@ Partial Class GameOverLoss
         Me.ClientSize = New System.Drawing.Size(435, 179)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "GameOverLoss"

@@ -22,6 +22,7 @@ Partial Class InfoScreen
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InfoScreen))
         Me.rtfInfo = New System.Windows.Forms.RichTextBox()
         Me.SuspendLayout()
         '
@@ -32,7 +33,6 @@ Partial Class InfoScreen
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtfInfo.BackColor = System.Drawing.SystemColors.Control
         Me.rtfInfo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.rtfInfo.Enabled = False
         Me.rtfInfo.Location = New System.Drawing.Point(12, 12)
         Me.rtfInfo.Name = "rtfInfo"
         Me.rtfInfo.ReadOnly = True
@@ -46,6 +46,7 @@ Partial Class InfoScreen
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(588, 581)
         Me.Controls.Add(Me.rtfInfo)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "InfoScreen"
         Me.Text = "InfoScreen"
         Me.ResumeLayout(False)

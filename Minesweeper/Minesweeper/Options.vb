@@ -8,11 +8,12 @@
         gameScreen.Show()
     End Sub
 
-    Private Sub numHeight_ValueChanged(sender As Object, e As EventArgs) Handles numWidth.Validated, numHeight.Validated
-        numMines.Maximum = (numHeight.Value * numWidth.Value) - 8
+    Private Sub numSize_ValueChanged(sender As Object, e As EventArgs) Handles numWidth.Validated, numHeight.Validated
+        numMines.Maximum = (numHeight.Value * numWidth.Value) - 9
     End Sub
 
     Private Sub radDifficulty_CheckedChanged(sender As RadioButton, e As EventArgs) Handles radEasy.CheckedChanged, radMedium.CheckedChanged, radHard.CheckedChanged, radCustom.CheckedChanged
+        'Updates the numHeight, numWidth, and numMines values based on the difficulty setting
         Dim setValues As New Dictionary(Of NumericUpDown, Integer()) From
             {{numHeight, {9, 16, 16}},
             {numWidth, {9, 16, 30}},
@@ -24,16 +25,19 @@
         Dim difficulty As Integer
         If sender.Checked Then
             If sender.Equals(radCustom) Then
+                'Enables all UpDown boxes to be customized by the user when the custom radio button is checked
                 For Each upDownBox In setValues.Keys
                     upDownBox.Enabled = True
                 Next
             Else
+                difficulty = radToDifficultyValues(sender)  'Gets the difficulty setting based on which radio button is checked
+
                 For Each upDownBox In setValues.Keys
-                    upDownBox.Enabled = False
-                    difficulty = radToDifficultyValues(sender)
-                    upDownBox.Value = setValues(upDownBox)(difficulty)
+                    upDownBox.Enabled = False   'Disables each UpDownBox
+                    upDownBox.Value = setValues(upDownBox)(difficulty)  'Gets the value the UpDownBox should be based on the difficulty and makes it the box's value
                 Next
             End If
         End If
+        numSize_ValueChanged(Nothing, Nothing)
     End Sub
 End Class
